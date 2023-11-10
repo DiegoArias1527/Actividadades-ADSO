@@ -24,7 +24,25 @@
                 $body["fecha_Consignacion"],
                 $body["id_Usuario"]
             );
-            echo "Correcto";
+            echo "Insert Correcto";
+        break;
+
+
+        
+        case "Update":
+            $datos=$consignacion->update_consignacion(
+                $body["id_Consignacion"],
+                $body["num_Cuenta"],
+                $body["valor_Consignacion"],
+                $body["fecha_Consignacion"],
+            );
+            echo "Upadate Correcto";
+        break;
+
+
+        case "Delete":
+            $datos=$consignacion->delete_consignacion($body["id_Consignacion"]);
+            echo "Delete Correcto";
         break;
     }
 ?>

@@ -32,5 +32,40 @@ class Consignacion extends Conectar{
         return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
     }
 
-}
+    public function update_consignacion($id_Consignacion, $num_Cuenta, $valor_Consignacion, $fecha_Consignacion) {
+        $conectar = parent::Conexion();
+        parent::set_names();
+        $sql = "UPDATE consignacion SET
+                num_Cuenta = ?,
+                valor_Consignacion = ?,
+                fecha_Consignacion = ?
+                WHERE
+                id_Consignacion = ?";
+    
+        $sql = $conectar->prepare($sql);
+        $sql->bindValue(1, $num_Cuenta);
+        $sql->bindValue(2, $valor_Consignacion);
+        $sql->bindValue(3, $fecha_Consignacion);
+        $sql->bindValue(4, $id_Consignacion);
+    
+        $sql->execute();
+        return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+    
+
+    public function delete_consignacion($id_Consignacion){
+        $conectar = parent::Conexion();
+        parent::set_names();
+        $sql = "DELETE FROM consignacion WHERE id_Consignacion = ?";
+        
+        $sql=$conectar->prepare($sql);
+        $sql->bindValue(1, $id_Consignacion);
+        $sql->execute();
+        return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+        
+  }
 ?>
